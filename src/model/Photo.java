@@ -48,11 +48,13 @@ import java.util.Calendar;
  *
  */
 public class Photo implements Serializable {
-	private String caption, tag;
+	private String caption, tag, fileName;
 	private Calendar date;
+	// List of tags (possibly ArrayList)
 	
-	public Photo (String caption) {
+	public Photo (String caption, String fileName) {
 		this.caption = caption;
+		this.fileName = fileName;
 		this.date = Calendar.getInstance();
 		this.date.set(Calendar.MILLISECOND,0);
 	}
