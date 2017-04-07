@@ -59,5 +59,28 @@ public class Photo implements Serializable {
 		this.date.set(Calendar.MILLISECOND,0);
 	}
 	
-
+	// Getter methods
+	public String getCaption() {
+		return this.caption;
+	}
+	
+	public String getfileName() {
+		return this.fileName;
+	}
+	
+	public String getDate() {
+		return this.date; // look up if it has toString or need to set it
+	}
+	public boolean addTag(String tagName, String tagValue) {
+		return true;
+	}
+	
+	public boolean removeTag(String tagName, String tagValue) {
+		return true;
+	}
+	
+	public boolean changeCaption(String newCaption) {
+		this.caption = newCaption;
+		return true;
+	}
 }
