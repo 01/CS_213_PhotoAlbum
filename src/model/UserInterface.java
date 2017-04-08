@@ -34,6 +34,6 @@ public interface UserInterface {
 	String getUsername();
 	boolean createAlbum(String albumName);
 	boolean deleteAlbum(String albumName);
-	boolean renameAlbum(String albumName);
+	boolean renameAlbum(String albumName, String newAlbumName);
 		
 }

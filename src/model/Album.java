@@ -21,9 +21,17 @@ public class Album implements Serializable {
 	private String albumName;
 	private ArrayList<Photo> photos;
 	
+	// Constructors assumes albumName not duplicate
 	public Album(String albumName) {
 		this.albumName = albumName;
 		this.photos = new ArrayList<Photo>();
+	}
+	
+	// Constructor in case of creating Album from search results
+	
+	public Album(String albumName, ArrayList<Photo> photos) {
+		this.albumName = albumName;
+		this.photos = photos;
 	}
 	
 	// Getter methods

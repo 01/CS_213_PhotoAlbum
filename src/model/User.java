@@ -79,11 +79,14 @@ public class User implements Serializable, UserInterface {
 		return this.username;
 	}
 	
-	public boolean renameAlbum(String albumName) {
+	public boolean renameAlbum(String albumName, String newAlbumName) {
 		int albumIndex = albumIndex(albumName);
 		if(albumIndex != -1) {
-			this.albumList.get(albumIndex).setAlbumName(albumName);
+			int newAlbumIndex = albumIndex(newAlbumName);
+			if(newAlbumIndex == -1) {
+			this.albumList.get(albumIndex).setAlbumName(newAlbumName);
 			return true;
+			}
 		}
 		return false;
 	}
@@ -118,7 +121,7 @@ public class User implements Serializable, UserInterface {
 		if(albumIndex != -1) {
 			int photoIndex = this.albumList.get(albumIndex).photoIndex(source);
 			if(photoIndex != -1) {
-				this.albumList.get(albumIndex).removePhoto(photoIndex); //need to get index of photo
+				this.albumList.get(albumIndex).removePhoto(source); //need to get index of photo
 				return true;
 			}
 			return false;
@@ -144,7 +147,7 @@ public class User implements Serializable, UserInterface {
 		}
 		return -1;
 	}
-	
+
 	public ArrayList<Photo> searchPhotosByDate(Calendar start, Calendar end){
 		ArrayList<Photo> searchList = new ArrayList<Photo>();
 		if(this.albumList.size() < 1) return null;
@@ -183,6 +186,9 @@ public class User implements Serializable, UserInterface {
 		}
 		return false;
 	}
+
+	
+	
 
 	
 }
