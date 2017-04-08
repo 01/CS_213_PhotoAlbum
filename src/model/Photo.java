@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.ArrayList;
 
 // Photo attributes needed
 // Caption/recaption a photo
@@ -48,9 +49,17 @@ import java.util.Calendar;
  *
  */
 public class Photo implements Serializable {
-	private String caption, tag, fileName;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5035836566716165499L; // Eclipse insisted on this need to loop up why
+	/**
+	 * 
+	 */
+	//private static final long serialVersionUID = 1L;
+	private String caption, fileName;
 	private Calendar date;
-	// List of tags (possibly ArrayList)
+	private ArrayList<Tag> tags;
 	
 	public Photo (String caption, String fileName) {
 		this.caption = caption;
@@ -69,18 +78,27 @@ public class Photo implements Serializable {
 	}
 	
 	public String getDate() {
-		return this.date; // look up if it has toString or need to set it
+		//return this.date; // look up if it has toString or need to set it
+		return "date";
 	}
+	
 	public boolean addTag(String tagName, String tagValue) {
+		//Need to check if tag already exists need to make searchTag method
+		tags.add(new Tag(tagName, tagValue));
 		return true;
 	}
 	
 	public boolean removeTag(String tagName, String tagValue) {
+		// Need to check if tag exists before removing
 		return true;
 	}
 	
 	public boolean changeCaption(String newCaption) {
 		this.caption = newCaption;
 		return true;
+	}
+	
+	public boolean hasTag() {
+		
 	}
 }
