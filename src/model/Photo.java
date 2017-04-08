@@ -98,8 +98,18 @@ public class Photo implements Serializable {
 			System.out.println("Photo doesnt have this tag");
 			return false;
 		}
-		//this.tags.remove(index); Need method for finding index of a tag in the arraylist
+		this.tags.remove(tagIndex(tagName, tagValue));
 		return true;
+	}
+	
+	public boolean editTag(String tagName, String oldTagValue, String newTagValue) {						// Need to decide if they can just edit value or edit tagName as well
+		int tagIndex = tagIndex(tagName, oldTagValue);
+		if(tagIndex == -1) {
+			System.out.println("This tag doesnt exist so cant be edited");
+			return false;
+		}
+		return true;						// Tag class needs setters not just getters
+		//this.tags.get(tagIndex)
 	}
 	
 	public boolean changeCaption(String newCaption) {
@@ -114,5 +124,15 @@ public class Photo implements Serializable {
 			}
 		}
 		return false;
+	}
+	
+	public int tagIndex(String tagName, String tagValue) {
+		for(int i = 0; i < this.tags.size(); i++) {
+			Tag currentTag =tags.get(i);
+			if(currentTag.getTagName() == tagName && currentTag.getTagValue() == tagValue) {
+				return i;
+			}
+		}
+		return -1;
 	}
 }
