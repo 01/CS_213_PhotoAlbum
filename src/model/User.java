@@ -43,6 +43,7 @@ public class User implements Serializable, UserInterface {
 
 	private String firstName, lastName, username, password;
 	private ArrayList<Album> albumList;
+	
 	// private Albums (need to decide to datastructure for this
 	
 	// Regular Constructor 
@@ -78,35 +79,64 @@ public class User implements Serializable, UserInterface {
 	}
 	
 	public boolean renameAlbum(String albumName) {
-		// TODO Auto-generated method stub
+		int albumIndex = albumIndex(albumName);
+		if(albumIndex != -1) {
+			this.albumList.get(albumIndex).setAlbumName(albumName);
+			return true;
+		}
 		return false;
 	}
 	
 	public boolean createAlbum(String albumName) {
 		// Need check if Album name already exists
-		this.albumList.add(new Album(albumName));
-		return true;
+		int albumIndex = albumIndex(albumName);
+		if(albumIndex == -1) {
+			this.albumList.add(new Album(albumName));
+			return true;
+		}
+		
+		return false;
 	}
 	
 	public boolean deleteAlbum(String albumName) {
 		// need a find index of Album method
-		return true;
-		
+		int albumIndex = albumIndex(albumName);
+		if(albumIndex != -1) {
+			this.albumList.remove(albumIndex);
+			return true;
+		}
+		return false;	
 	}
 	
 	public boolean movePhoto(String albumNameSource, Photo source, String albumNameDestination) {
+		
 		copyPhoto(source, albumNameDestination);
+		//deletePhoto(albumNameSource, source);
+		int albumIndex = albumIndex(albumNameSource);
+		if(albumIndex != -1) {
+			this.albumList.get(albumIndex).removePhoto(0); //need to get index of photo
+		}
 		//deletePhoto(albumNameSource, source)
 		return true;
 	}
 	
 	public boolean copyPhoto(Photo source, String albumNameDestination) {
-		return true;
+		int albumIndex = albumIndex(albumNameDestination);
+		if(albumIndex != -1) {
+			this.albumList.get(albumIndex).addPhoto(source);
+			return true;
+		}
+		return false;
+	}
+	
+	public int albumIndex(String albumName) {
+		Album current;
+		for(int i = 0; i < this.albumList.size(); i++) {
+			current = this.albumList.get(i);
+			if(current.getAlbumName().equalsIgnoreCase(albumName)) return i;
+		}
+		return -1;
 	}
 
-	
-	
-	
-	
 	
 }

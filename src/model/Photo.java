@@ -89,7 +89,7 @@ public class Photo implements Serializable {
 	
 	public String getDate() {
 		//return this.date; // look up if it has toString or need to set it
-		return "date";
+		return this.date.getTime().toString();
 	}
 	
 	public boolean addTag(String tagName, String tagValue) {
@@ -151,3 +151,4 @@ public class Photo implements Serializable {
 		return this.tags;
 	}
 }
+ 

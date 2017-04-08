@@ -58,6 +58,15 @@ public class Album implements Serializable {
 		}
 	}
 	
+	public int photoIndex(Photo photo) {
+		Photo current;
+		for(int i = 0; i < this.photos.size(); i++) {
+			current = this.photos.get(i);
+			if(current.equals(photo)) return i;
+		}
+		return -1;
+	}
+	
 	
 	
 	

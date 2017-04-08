@@ -1,12 +1,14 @@
 package model;
 
+import java.util.concurrent.TimeUnit;
+
 public class methodTesters {
 
 	public static void main(String[] args) {
 	// Photo object Tests
 		
-		//photoTests();
-		albumTests();
+		photoTests();
+		//albumTests();
 
 	}
 	
@@ -44,6 +46,18 @@ public class methodTesters {
 		
 		// test removeTag
 		if(testPhoto_No_Caption.removeTag("Person", "Andy")) System.out.println("removeTag successful");
+		
+		// Test date
+		System.out.println("Date: " + testPhoto_Caption.getDate());
+		System.out.println("Date: " + testPhoto_Caption.getDate());
+		System.out.println("Date: " + testPhoto_Caption.getDate());
+		System.out.println("Date: " + testPhoto_Caption.getDate());
+		System.out.println("Date: " + testPhoto_Caption.getDate());
+		System.out.println("Date: " + testPhoto_Caption.getDate());
+		System.out.println("Date: " + testPhoto_Caption.getDate());
+		System.out.println("Date: " + testPhoto_Caption.getDate());
+		
+
 	}
 	
 	public static void albumTests() {
