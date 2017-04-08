@@ -63,6 +63,16 @@ public class Photo implements Serializable {
 	
 	public Photo (String caption, String fileName) {
 		this.caption = caption;
+		this.tags = new ArrayList<Tag>();
+		this.fileName = fileName;
+		this.date = Calendar.getInstance();
+		this.date.set(Calendar.MILLISECOND,0);
+	}
+	
+	// Overload constructor if creating without caption
+	public Photo(String fileName) {
+		this.caption = "";
+		this.tags = new ArrayList<Tag>();
 		this.fileName = fileName;
 		this.date = Calendar.getInstance();
 		this.date.set(Calendar.MILLISECOND,0);
@@ -85,7 +95,7 @@ public class Photo implements Serializable {
 	public boolean addTag(String tagName, String tagValue) {
 		//Need to check if tag already exists need to make searchTag method
 		if(!hasTag(tagName, tagValue)) {
-			tags.add(new Tag(tagName, tagValue));
+			this.tags.add(new Tag(tagName, tagValue));
 			return true;
 		}
 		System.out.println("This photo already has this tag");
@@ -108,6 +118,7 @@ public class Photo implements Serializable {
 			System.out.println("This tag doesnt exist so cant be edited");
 			return false;
 		}
+		this.tags.get(tagIndex).setTagValue(newTagValue);
 		return true;						// Tag class needs setters not just getters
 		//this.tags.get(tagIndex)
 	}

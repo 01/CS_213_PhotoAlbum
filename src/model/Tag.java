@@ -22,13 +22,21 @@ public class Tag {
 	}
 	
 	// Getter Methods
-	
 	public String getTagName() {
 		return this.tagName;
 	}
 	
 	public String getTagValue() {
 		return this.tagValue;
+	}
+	
+	// Setter 
+	public void setTagName(String tagName) {
+		this.tagName = tagName;
+	}
+	
+	public void setTagValue(String tagValue) {
+		this.tagValue = tagValue;
 	}
 
 }
