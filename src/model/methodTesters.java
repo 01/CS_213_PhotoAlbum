@@ -5,7 +5,8 @@ public class methodTesters {
 	public static void main(String[] args) {
 	// Photo object Tests
 		
-		photoTests();
+		//photoTests();
+		albumTests();
 
 	}
 	
@@ -43,6 +44,35 @@ public class methodTesters {
 		
 		// test removeTag
 		if(testPhoto_No_Caption.removeTag("Person", "Andy")) System.out.println("removeTag successful");
+	}
+	
+	public static void albumTests() {
+		// Test album creation
+		Album album1 = new Album("Album1");
+		System.out.println("Album Created getAlbumName = " + album1.getAlbumName());
+		
+		// Test adding photos to album
+		Photo testPhoto1 = new Photo("testPhoto1", "test1.jpg");
+		Photo testPhoto2 = new Photo("testPhoto2", "test2.jpg");
+		Photo testPhoto3 = new Photo("testPhoto3", "test3.jpg");
+		Photo testPhoto4 = new Photo("testPhoto4", "test4.jpg");
+		Photo testPhoto5 = new Photo("testPhoto5", "test5.jpg");
+		Photo testPhoto6 = new Photo("testPhoto6", "test6.jpg");
+		Photo testPhoto7 = new Photo("testPhoto7", "test7.jpg");
+		
+		album1.addPhoto(testPhoto1);
+		album1.addPhoto(testPhoto2);
+		album1.addPhoto(testPhoto3);
+		album1.addPhoto(testPhoto4);
+		album1.addPhoto(testPhoto5);
+		album1.addPhoto(testPhoto6);
+		album1.addPhoto(testPhoto7);
+		
+		// Test print photolistnames
+		System.out.println("Printing photo list names");
+		album1.printPhotoListNames();
+		
+		
 	}
 
 }

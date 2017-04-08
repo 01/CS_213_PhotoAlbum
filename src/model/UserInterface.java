@@ -1,8 +1,4 @@
 package model;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-
 /*
  * Once the user logs in successfully, all albums and photo information for this user from a previous session (if any) are loaded from disk.
  * Initially, all the albums belonging to the user should be displayed. For each album, its name, the number of photos in it, and the range of dates (earliest and latest date) on which photos 
@@ -32,81 +28,12 @@ import java.util.ArrayList;
  * Note: A single user may not have duplicate album names, but the name may be duplicated across users.
  */
 
-public class User implements Serializable, UserInterface {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 3636530334821498513L;
-	/**
-	 * 
-	 */
-
-	private String firstName, lastName, username, password;
-	private ArrayList<Album> albumList;
-	// private Albums (need to decide to datastructure for this
-	
-	// Regular Constructor 
-	// Possibly for fancy functionality have method to check password strength;
-	public User(String firstName, String lastName, String username, String password) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.username = username;
-		this.password = password;
-		this.albumList = new ArrayList<Album>();
-
-	}
-	
-	// Overloaded Constructor for single name given
-	public User(String firstName, String username, String password) {
-		this.firstName = firstName;
-		this.username = username;
-		this.password = password;
-		this.albumList = new ArrayList<Album>();
-	}
-	
-	// Getters 
-	public String getFullName() {
-		return this.firstName + " " + this.lastName;
-	}
-	
-	public String getPassword() {
-		return this.password;
-	}
-	
-	public String getUsername() {
-		return this.username;
-	}
-	
-	public boolean renameAlbum(String albumName) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	public boolean createAlbum(String albumName) {
-		// Need check if Album name already exists
-		this.albumList.add(new Album(albumName));
-		return true;
-	}
-	
-	public boolean deleteAlbum(String albumName) {
-		// need a find index of Album method
-		return true;
+public interface UserInterface {
+	String getFullName();
+	String getPassword();
+	String getUsername();
+	boolean createAlbum(String albumName);
+	boolean deleteAlbum(String albumName);
+	boolean renameAlbum(String albumName);
 		
-	}
-	
-	public boolean movePhoto(String albumNameSource, Photo source, String albumNameDestination) {
-		copyPhoto(source, albumNameDestination);
-		//deletePhoto(albumNameSource, source)
-		return true;
-	}
-	
-	public boolean copyPhoto(Photo source, String albumNameDestination) {
-		return true;
-	}
-
-	
-	
-	
-	
-	
 }

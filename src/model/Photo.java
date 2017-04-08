@@ -146,4 +146,8 @@ public class Photo implements Serializable {
 		}
 		return -1;
 	}
+	
+	public ArrayList<Tag> getTags(){
+		return this.tags;
+	}
 }
