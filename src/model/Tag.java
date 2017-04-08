@@ -38,5 +38,9 @@ public class Tag {
 	public void setTagValue(String tagValue) {
 		this.tagValue = tagValue;
 	}
+	
+	public String toString() {
+		return this.tagName + " " + this.tagValue;
+	}
 
 }

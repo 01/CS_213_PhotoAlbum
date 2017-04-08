@@ -87,10 +87,15 @@ public class Photo implements Serializable {
 		return this.fileName;
 	}
 	
-	public String getDate() {
+	public Calendar getDate() {
 		//return this.date; // look up if it has toString or need to set it
+		return this.date;
+	}
+	
+	public String getDateString() {
 		return this.date.getTime().toString();
 	}
+	
 	
 	public boolean addTag(String tagName, String tagValue) {
 		//Need to check if tag already exists need to make searchTag method
@@ -139,7 +144,7 @@ public class Photo implements Serializable {
 	
 	public int tagIndex(String tagName, String tagValue) {
 		for(int i = 0; i < this.tags.size(); i++) {
-			Tag currentTag =tags.get(i);
+			Tag currentTag = this.tags.get(i);
 			if(currentTag.getTagName() == tagName && currentTag.getTagValue() == tagValue) {
 				return i;
 			}
@@ -149,6 +154,12 @@ public class Photo implements Serializable {
 	
 	public ArrayList<Tag> getTags(){
 		return this.tags;
+	}
+	
+	public void printTags() {
+		for(Tag tag: this.tags) {
+			System.out.println(tag.toString());
+		}
 	}
 }
  

@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /*
  * Once the user logs in successfully, all albums and photo information for this user from a previous session (if any) are loaded from disk.
@@ -113,11 +114,17 @@ public class User implements Serializable, UserInterface {
 		copyPhoto(source, albumNameDestination);
 		//deletePhoto(albumNameSource, source);
 		int albumIndex = albumIndex(albumNameSource);
+		
 		if(albumIndex != -1) {
-			this.albumList.get(albumIndex).removePhoto(0); //need to get index of photo
+			int photoIndex = this.albumList.get(albumIndex).photoIndex(source);
+			if(photoIndex != -1) {
+				this.albumList.get(albumIndex).removePhoto(photoIndex); //need to get index of photo
+				return true;
+			}
+			return false;
+			
 		}
-		//deletePhoto(albumNameSource, source)
-		return true;
+		return false;;
 	}
 	
 	public boolean copyPhoto(Photo source, String albumNameDestination) {
@@ -136,6 +143,45 @@ public class User implements Serializable, UserInterface {
 			if(current.getAlbumName().equalsIgnoreCase(albumName)) return i;
 		}
 		return -1;
+	}
+	
+	public ArrayList<Photo> searchPhotosByDate(Calendar start, Calendar end){
+		ArrayList<Photo> searchList = new ArrayList<Photo>();
+		if(this.albumList.size() < 1) return null;
+		for(Album album : this.albumList) {
+			if(album.getPhotoList().size() < 1) continue;
+			for(Photo photo : album.getPhotoList()) {
+				if(photo.getDate().compareTo(start) >= 0 && photo.getDate().compareTo(end) <= 0) {
+					searchList.add(photo);
+				}
+			}
+		}
+		return searchList;	
+	}
+	
+	public ArrayList<Photo> searchByTags(ArrayList<Tag> tags){
+		ArrayList<Photo> searchList = new ArrayList<Photo>();
+		if(this.albumList.size() < 1) return null;
+		for(Album album : this.albumList) {
+			if(album.getPhotoList().size() < 1) continue;
+			for(Photo photo : album.getPhotoList()) {
+				if(hasSearchTag(tags, photo.getTags())) {
+					searchList.add(photo);
+				}
+			}
+		}
+		return searchList;	
+	}
+	
+	public boolean hasSearchTag(ArrayList<Tag> searchTags, ArrayList<Tag> photoTags) {
+		for(Tag searchTag : searchTags) {
+			for(Tag photoTag: photoTags) {
+				if(searchTag.getTagName().equalsIgnoreCase(photoTag.getTagName()) && searchTag.getTagValue().equalsIgnoreCase(photoTag.getTagValue())){
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	

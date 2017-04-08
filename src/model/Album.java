@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /*
  * Open an album. Opening an album displays all photos, with their thumbnail images and captions, inside that album. Once an album is open the user can do the following:
@@ -46,10 +47,14 @@ public class Album implements Serializable {
 		return true;
 	}
 	
-	public boolean removePhoto(int index) {
+	public boolean removePhoto(Photo photo) {
 		// Need to decide how this will be done index vs photo object
-		this.photos.remove(index);
-		return true;
+		int photoIndex = photoIndex(photo);
+		if(photoIndex != -1) {
+			this.photos.remove(photoIndex);
+			return true;
+		}
+		return false;
 	}
 	
 	public void printPhotoListNames() {
@@ -67,8 +72,24 @@ public class Album implements Serializable {
 		return -1;
 	}
 	
+	public Calendar getFirst() {
+		if(this.photos.size() < 1) return null;
+		Calendar first = this.photos.get(0).getDate();
+		for(Photo photo: this.photos) {
+			first = (photo.getDate().compareTo(first) > 0) ? photo.getDate() : first;
+		}
+		
+		return first;
+	}
 	
+	public Calendar getLast() {
+		if(this.photos.size() < 1) return null;
+		Calendar last = this.photos.get(0).getDate();
+		for(Photo photo: this.photos) {
+			last = (photo.getDate().compareTo(last) < 0) ? photo.getDate() : last;
+		}
+		
+		return last;
+	}
 	
-	
-
 }
