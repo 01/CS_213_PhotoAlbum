@@ -84,12 +84,21 @@ public class Photo implements Serializable {
 	
 	public boolean addTag(String tagName, String tagValue) {
 		//Need to check if tag already exists need to make searchTag method
-		tags.add(new Tag(tagName, tagValue));
-		return true;
+		if(!hasTag(tagName, tagValue)) {
+			tags.add(new Tag(tagName, tagValue));
+			return true;
+		}
+		System.out.println("This photo already has this tag");
+		return false;
 	}
 	
 	public boolean removeTag(String tagName, String tagValue) {
 		// Need to check if tag exists before removing
+		if(!hasTag(tagName, tagValue)) {
+			System.out.println("Photo doesnt have this tag");
+			return false;
+		}
+		//this.tags.remove(index); Need method for finding index of a tag in the arraylist
 		return true;
 	}
 	
@@ -98,7 +107,12 @@ public class Photo implements Serializable {
 		return true;
 	}
 	
-	public boolean hasTag() {
-		
+	public boolean hasTag(String tagName, String tagValue) {
+		for(Tag tag: this.tags) {
+			if(tag.getTagName() == tagName && tag.getTagValue() == tagValue) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
