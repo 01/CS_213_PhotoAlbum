@@ -1,8 +1,17 @@
 package controller;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
+import model.Album;
+import model.User;
+
+import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 /**
  * Created by XBBL7MK on 4/8/2017.
@@ -34,6 +43,15 @@ public class albumController {
     @FXML private DatePicker startDateInput;
     @FXML private DatePicker endDateInput;
 
+    @FXML private TableView<Album> albumTable;
 
 
+    @FXML
+    public void initialize() throws IOException {
+        selectionListener();
+
+    }
+
+    private void selectionListener() {
+    }
 }

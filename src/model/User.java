@@ -127,7 +127,7 @@ public class User implements Serializable, UserInterface {
 			return false;
 			
 		}
-		return false;;
+		return false;
 	}
 	
 	public boolean copyPhoto(Photo source, String albumNameDestination) {
