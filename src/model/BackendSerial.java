@@ -25,16 +25,19 @@ public class BackendSerial implements Serializable{
 	private static final String storeDir = "dat";
 	private static final String storeFile = "users.dat"; 
 	
-	private ArrayList<User> userList;
+	private static ArrayList<User> userList;
+	private static BackendSerial current = new BackendSerial();
 	
 	
 	public BackendSerial() {
-		this.userList = new ArrayList<User>();
-		
+		if(userList == null) {
+			userList = new ArrayList<User>();
+		}
 		// Set path for files to be written. 
 		File datDir = new File(storeDir);
 		datDir.mkdir();
 	}
+
 	public void writeUser(User user) {
 		// write the users.dat
 
@@ -50,7 +53,7 @@ public class BackendSerial implements Serializable{
 		
 	}
 	
-	public User readUser(String username) throws IOException, ClassNotFoundException  {
+	public static User readUser(String username) throws IOException, ClassNotFoundException  {
 		if(!userExists(username)) {
 			System.out.println("User does not exist");
 			return null;
@@ -63,7 +66,7 @@ public class BackendSerial implements Serializable{
 		
 	}
 	
-	public void createUser(String firstName, String lastName, String username, String password) {
+	public static void createUser(String firstName, String lastName, String username, String password) {
 		if(userExists(username)) {
 			System.out.println("User already exists");
 		}
@@ -71,11 +74,11 @@ public class BackendSerial implements Serializable{
 			//public User(String firstName, String lastName, String username, String password) {
 			User current = new User(firstName, lastName, username, password);
 		//writeUser(current);
-			this.userList.add(current);
+			userList.add(current);
 		}
 	}
 	
-	public void deleteUser(String username) {
+	public static void deleteUser(String username) {
 		// Need helper method to check if user exists
 		if(!userExists(username)) {
 			System.out.println("User does not exist");
@@ -85,28 +88,28 @@ public class BackendSerial implements Serializable{
 			
 			// need getIndex of user method
 			int userIndex = userIndex(username);
-			this.userList.remove(userIndex);
+			userList.remove(userIndex);
 		}
 	}
 	
-	public boolean userExists(String username) {
-		for(User user: this.userList) {
+	public static boolean userExists(String username) {
+		for(User user: userList) {
 			if (user.getUsername().equalsIgnoreCase(username)) return true;
 		}
 		return false;
 	}
 	
-	public int userIndex(String username) {
-		if(this.userList.size() < 1) return -1;
+	public static int userIndex(String username) {
+		if(userList.size() < 1) return -1;
 		for(int i = 0; i < userList.size(); i++) {
-			User current = this.userList.get(i);
+			User current = userList.get(i);
 			if(current.getUsername().equalsIgnoreCase(username)) return i;
 		}
 		return -1;
 	}
 	
-	public User getUserAtIndex(int index) {
-		return this.userList.get(index);
+	public static User getUserAtIndex(int index) {
+		return userList.get(index);
 	}
 	
 }

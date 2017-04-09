@@ -59,7 +59,7 @@
                         <Insets right="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button id="CreateNewAccountButton" fx:id="NewAccountButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Create New Account">
+                  <Button id="CreateNewAccountButton" fx:id="NewAccountButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClick" text="Create New Account">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin>

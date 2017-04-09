@@ -27,19 +27,17 @@ public class LoginController {
 	@FXML private TextField usernameBox;
 	@FXML private TextField passwordBox;
 	
-	BackendSerial currentBackend = new BackendSerial();
-	
-	
 	//
 	@FXML
 	public void onClick(ActionEvent e) throws IOException{	
 		String username = usernameBox.getText();
 		System.out.println("Makes it here");
 		Button clicked = (Button)e.getSource();
-		currentBackend.createUser("Andrew", "Khazanovich", "admin", "admin");
+		BackendSerial.createUser("Andrew", "Khazanovich", "admin", "admin");
 		if(clicked == LoginButton){ //if logging in
 			// Entered admin 
-			if(username.toLowerCase().trim().equals("admin") && currentBackend.userExists("admin")){
+			System.out.println("Makes it trhough clicked == LoginButton");
+			if(username.toLowerCase().trim().equals("admin") && BackendSerial.userExists("admin")){
 				System.out.println("Admin exists and clicked Login");
 		        Scene admin_page = new Scene(FXMLLoader.load(getClass().getResource("/view/AdminView.fxml")));
 		        Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
@@ -47,11 +45,13 @@ public class LoginController {
 	            app_stage.setScene(admin_page);
 			}
 			else{ // Regular User login
-				if(currentBackend.userExists(username)){
-						int userIndex = currentBackend.userIndex(username);
+				if(BackendSerial.userExists(username)){
+						System.out.println("Makes it past userExists check");
+						int userIndex = BackendSerial.userIndex(username);
 						String password = passwordBox.getText();
-						if(password.equals(currentBackend.getUserAtIndex(userIndex).getPassword())) {
-							Parent home_page_parent = FXMLLoader.load(getClass().getResource("/view/UserPanel.fxml"));
+						System.out.println("User exists: user Index:" + userIndex + "password: " + password);
+						if(password.equals(BackendSerial.getUserAtIndex(userIndex).getPassword())) {
+							Parent home_page_parent = FXMLLoader.load(getClass().getResource("/view/UserView.fxml"));
 							Scene home_page_scene = new Scene(home_page_parent);
 							Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 							app_stage.setResizable(false);
@@ -67,9 +67,9 @@ public class LoginController {
 					
 				}
 			}
-			}
+		}
 		else { // Clicked create new user
-			Scene createuser_page = new Scene(FXMLLoader.load(getClass().getResource("/view/CreateNewUser.fxml")));
+			Scene createuser_page = new Scene(FXMLLoader.load(getClass().getResource("/view_helper/CreateNewUser.fxml")));
 	        Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 	        app_stage.setResizable(false);
             app_stage.setScene(createuser_page);
