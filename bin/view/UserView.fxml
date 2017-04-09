@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.userController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+            <TableView prefHeight="400.0" prefWidth="328.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <columns>
+                <TableColumn fx:id="nameColumn" prefWidth="91.0" text="Album Name" />
+                <TableColumn fx:id="dateRangeColumn" prefWidth="84.0" text="Date Range" />
+                  <TableColumn fx:id="dateModColumn" prefWidth="62.0" text="Date Modified" />
+                  <TableColumn fx:id="photoCountColumn" prefWidth="76.0" text="# Photos" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </center>
+   <right>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+            <Accordion layoutX="53.0" prefHeight="375.0" prefWidth="272.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <panes>
+                <TitledPane animated="false" text="Add/Edit/Delete">
+                  <content>
+                    <AnchorPane>
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="299.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <TextField fx:id="renameField">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <HBox>
+                                       <children>
+                                          <Button fx:id="renameButton" mnemonicParsing="false" text="Rename Album" />
+                                          <Button fx:id="deleteButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Delete Album">
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <Button fx:id="addAlbumButton" mnemonicParsing="false" text="Add Album">
+                                       <VBox.margin>
+                                          <Insets top="15.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <Button fx:id="openButton" layoutX="72.0" layoutY="175.0" mnemonicParsing="false" text="Open Album">
+                                       <VBox.margin>
+                                          <Insets top="50.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </TitledPane>
+                <TitledPane animated="false" text="Search">
+                  <content>
+                    <AnchorPane>
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="818.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <VBox>
+                                       <children>
+                                          <Label text="Search by Date">
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                          <HBox>
+                                             <children>
+                                                <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                   <children>
+                                                      <Label text="Start Date:" />
+                                                      <Label layoutX="10.0" layoutY="10.0" text="End Date:">
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </VBox>
+                                                <VBox>
+                                                   <children>
+                                                      <DatePicker fx:id="startDateInput" />
+                                                      <DatePicker fx:id="endDateInput" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="299.0" prefWidth="230.0">
+                                       <children>
+                                          <Label text="Search by Tag">
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                          <TableView prefHeight="200.0" prefWidth="200.0">
+                                            <columns>
+                                              <TableColumn fx:id="tagNameColumn" prefWidth="75.0" text="Tag Name" />
+                                              <TableColumn fx:id="tagValueColumn" prefWidth="75.0" text="Tag Value" />
+                                            </columns>
+                                             <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                             </columnResizePolicy>
+                                          </TableView>
+                                          <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                             <children>
+                                                <TextField fx:id="tagNameField" prefHeight="25.0" prefWidth="99.0" promptText="Tag Name" />
+                                                <TextField fx:id="tagValueField" layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="99.0" promptText="Tag Field" />
+                                                <Button fx:id="AddTagButton" mnemonicParsing="false" text="Add">
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin></Button>
+                                             </children>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <padding>
+                                                <Insets top="10.0" />
+                                             </padding>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <Button fx:id="searchButton" mnemonicParsing="false" text="Search">
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" top="20.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </TitledPane>
+                  <TitledPane animated="false" text="Buddy List">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </TitledPane>
+              </panes>
+            </Accordion>
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>

@@ -70,7 +70,7 @@ public class BackendSerial implements Serializable{
 		else {
 			//public User(String firstName, String lastName, String username, String password) {
 			User current = new User(firstName, lastName, username, password);
-			writeUser(current);
+		//writeUser(current);
 			this.userList.add(current);
 		}
 	}
@@ -103,6 +103,10 @@ public class BackendSerial implements Serializable{
 			if(current.getUsername().equalsIgnoreCase(username)) return i;
 		}
 		return -1;
+	}
+	
+	public User getUserAtIndex(int index) {
+		return this.userList.get(index);
 	}
 	
 }
