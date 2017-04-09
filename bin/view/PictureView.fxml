@@ -2,8 +2,7 @@
 
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>no
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
