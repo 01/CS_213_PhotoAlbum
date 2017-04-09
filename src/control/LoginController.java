@@ -27,6 +27,7 @@ public class LoginController {
 	@FXML private TextField usernameBox;
 	@FXML private TextField passwordBox;
 	
+	
 	//
 	@FXML
 	public void onClick(ActionEvent e) throws IOException{	
@@ -50,16 +51,25 @@ public class LoginController {
 						int userIndex = BackendSerial.userIndex(username);
 						String password = passwordBox.getText();
 						System.out.println("User exists: user Index:" + userIndex + "password: " + password);
-						if(password.equals(BackendSerial.getUserAtIndex(userIndex).getPassword())) {
-							Parent home_page_parent = FXMLLoader.load(getClass().getResource("/view/UserView.fxml"));
-							Scene home_page_scene = new Scene(home_page_parent);
-							Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-							app_stage.setResizable(false);
-							app_stage.setScene(home_page_scene);
+						User currentUser;
+						try {
+							currentUser = BackendSerial.readUser(username);
+							if(password.equals(currentUser.getPassword())) {
+								BackendSerial.loadUser(username);
+								Parent home_page_parent = FXMLLoader.load(getClass().getResource("/view/UserView.fxml"));
+								Scene home_page_scene = new Scene(home_page_parent);
+								Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+								app_stage.setResizable(false);
+								app_stage.setScene(home_page_scene);
+							}
+							else {
+								System.out.println("Password is incorrect for user");// wrong password
+							}
+						} catch (ClassNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
 						}
-						else {
-							System.out.println("Password is incorrect for user");// wrong password
-						}
+						
 				}
 						
 				else { // User doesnt exist
@@ -75,7 +85,7 @@ public class LoginController {
             app_stage.setScene(createuser_page);
 		}
 			
-		}
+	}
 			
 		}
 
