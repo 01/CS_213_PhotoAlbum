@@ -44,6 +44,8 @@ public class User implements Serializable, UserInterface {
 
 	private String firstName, lastName, username, password;
 	private ArrayList<Album> albumList;
+	private Calendar dateCreated;
+	private Calendar lastLogin;
 	
 	// private Albums (need to decide to datastructure for this
 	
@@ -55,6 +57,8 @@ public class User implements Serializable, UserInterface {
 		this.username = username;
 		this.password = password;
 		this.albumList = new ArrayList<Album>();
+		this.dateCreated = Calendar.getInstance();
+		this.dateCreated.set(Calendar.MILLISECOND,0);
 
 	}
 	
@@ -64,6 +68,8 @@ public class User implements Serializable, UserInterface {
 		this.username = username;
 		this.password = password;
 		this.albumList = new ArrayList<Album>();
+		this.dateCreated = Calendar.getInstance();
+		this.dateCreated.set(Calendar.MILLISECOND,0);
 	}
 	
 	// Getters 
@@ -77,6 +83,19 @@ public class User implements Serializable, UserInterface {
 	
 	public String getUsername() {
 		return this.username;
+	}
+	
+	public Calendar getDateCreated() {
+		return this.dateCreated;
+	}
+	
+	public Calendar getLastLogin() {
+		return this.lastLogin;
+	}
+	
+	public void setLastLogin() {
+		this.lastLogin = Calendar.getInstance();
+		this.lastLogin.set(Calendar.MILLISECOND,0);
 	}
 	
 	public boolean renameAlbum(String albumName, String newAlbumName) {
