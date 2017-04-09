@@ -56,6 +56,7 @@ public class LoginController {
 							currentUser = BackendSerial.readUser(username);
 							if(password.equals(currentUser.getPassword())) {
 								BackendSerial.loadUser(username);
+								currentUser.setLastLogin();
 								Parent home_page_parent = FXMLLoader.load(getClass().getResource("/view/UserView.fxml"));
 								Scene home_page_scene = new Scene(home_page_parent);
 								Stage app_stage = (Stage) ((Node) e.getSource()).getScene().getWindow();

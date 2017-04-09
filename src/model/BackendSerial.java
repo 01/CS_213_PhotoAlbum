@@ -78,6 +78,27 @@ public class BackendSerial implements Serializable{
 		}
 	}
 	
+	public static void save() {
+		ObjectOutputStream oos;
+		try {
+			oos = new ObjectOutputStream(new FileOutputStream(storeDir + File.separator + usersFile));
+			oos.writeObject(userList);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			if(currentUser != null) {
+			oos = new ObjectOutputStream(new FileOutputStream(storeDir + File.separator + currentUser.getUsername().concat(storeExtension)));
+			oos.writeObject(currentUser);
+			}
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 	/*public static void writeAll() {
 		ObjectOutputStream oos;
 		try {
@@ -153,6 +174,7 @@ public class BackendSerial implements Serializable{
 			User current = new User(firstName, lastName, username, password);
 			userList.add(current.getUsername());
 			writeUser(current);
+			save();
 		}
 	}
 	
