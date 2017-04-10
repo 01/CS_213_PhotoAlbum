@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import model.User;
 import model.Album;
 import model.BackendSerial;
+import model.Tag;
 import view.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -21,8 +23,11 @@ public class AdminController {
 	@FXML private Button addUserButton;
 	@FXML private Button deleteUserButton;
 	@FXML private Button logoutButton;
-	
+
 	@FXML private TableView<User> usersTableView;
+	@FXML private TableColumn<User,String> userNameColumn;
+    @FXML private TableColumn<User,String> tagValueColumn;
+
 	
 	
 	/*myIntegerColumn.setCellValueFactory(cellData -> 
@@ -50,6 +55,7 @@ public class AdminController {
 	public void initialize() {
 		ArrayList<User> users = BackendSerial.getUsers();
 		if(users.size() < 1) return;
+		
 		
 	}
 
