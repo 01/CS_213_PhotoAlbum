@@ -1,6 +1,9 @@
 package control;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import model.User;
+import model.Album;
 import model.BackendSerial;
 import view.*;
 import javafx.event.ActionEvent;
@@ -10,6 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -18,7 +22,11 @@ public class AdminController {
 	@FXML private Button deleteUserButton;
 	@FXML private Button logoutButton;
 	
+	@FXML private TableView<User> usersTableView;
 	
+	
+	/*myIntegerColumn.setCellValueFactory(cellData -> 
+	cellData.getValue().myIntegerProperty().asObject());*/
 	
 	@FXML
 	public void onClick(ActionEvent e) throws IOException{	
@@ -37,6 +45,12 @@ public class AdminController {
 		else if(clicked == logoutButton) {
 			BackendSerial.save();
 		}
+	}
+	
+	public void initialize() {
+		ArrayList<User> users = BackendSerial.getUsers();
+		if(users.size() < 1) return;
+		
 	}
 
 }

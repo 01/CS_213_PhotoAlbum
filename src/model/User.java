@@ -195,7 +195,25 @@ public class User implements Serializable, UserInterface {
 		return searchList;	
 	}
 	
+	public ArrayList<Photo> searchPhotos(Calendar start, Calendar end, ArrayList<Tag> tags){
+		ArrayList<Photo> searchList = new ArrayList<Photo>();
+		if(this.albumList.size() < 1) return null;
+		for(Album album : this.albumList) {
+			if(album.getPhotoList().size() < 1) continue;
+			for(Photo photo : album.getPhotoList()) {
+				if(photo.getDate().compareTo(start) >= 0 && photo.getDate().compareTo(end) <= 0) {
+					if(hasSearchTag(tags, photo.getTags())){
+						searchList.add(photo);
+					}
+				}
+			}
+		}
+		return searchList;	
+		
+	}
+	
 	public boolean hasSearchTag(ArrayList<Tag> searchTags, ArrayList<Tag> photoTags) {
+		if(searchTags == null || photoTags == null) return false;
 		for(Tag searchTag : searchTags) {
 			for(Tag photoTag: photoTags) {
 				if(searchTag.getTagName().equalsIgnoreCase(photoTag.getTagName()) && searchTag.getTagValue().equalsIgnoreCase(photoTag.getTagValue())){

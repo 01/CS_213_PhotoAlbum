@@ -213,5 +213,23 @@ public class BackendSerial implements Serializable{
 		return userList.get(index);
 	}
 	
+	public static ArrayList<User> getUsers(){
+		ArrayList<User> users = new ArrayList<User>();
+		User current = null;
+		for(String username: userList) {
+			try {
+				current = readUser(username);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			users.add(current);
+		}
+		return users;
+	}
+	
 		
 }
