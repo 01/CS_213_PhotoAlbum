@@ -50,13 +50,13 @@
    <center>
       <VBox BorderPane.alignment="CENTER">
          <children>
-            <TableView>
+            <TableView fx:id="user">
               <columns>
-                <TableColumn prefWidth="75.0" text="Username" />
-                <TableColumn prefWidth="75.0" text="Password" />
-                  <TableColumn prefWidth="75.0" text="Name" />
-                  <TableColumn prefWidth="97.0" text="Date Created" />
-                  <TableColumn prefWidth="107.0" text="Last Logged In " />
+                <TableColumn fx:id="usernameColumn" prefWidth="75.0" text="Username" />
+                <TableColumn fx:id="passwordColumn" prefWidth="75.0" text="Password" />
+                  <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
+                  <TableColumn fx:id="dateCreatedColumn" prefWidth="97.0" text="Date Created" />
+                  <TableColumn fx:id="lastLoginColumn" prefWidth="107.0" text="Last Logged In " />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
