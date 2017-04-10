@@ -33,20 +33,13 @@
          </children>
       </VBox>
    </top>
-   <center>
-      <ScrollPane BorderPane.alignment="CENTER">
-         <content>
-            <TilePane />
-         </content>
-      </ScrollPane>
-   </center>
    <right>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="TOP_RIGHT" spacing="5.0">
                <children>
                   <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Slideshow" />
-                  <Button mnemonicParsing="false" text="Add Picture" />
+                  <Button mnemonicParsing="false" onAction="#AddPictureButton" text="Add Picture" />
                </children>
                <VBox.margin>
                   <Insets bottom="3.0" top="3.0" />
@@ -175,4 +168,7 @@
          </children>
       </VBox>
    </right>
+   <center>
+      <ListView fx:id="PhotoListView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
 </BorderPane>
